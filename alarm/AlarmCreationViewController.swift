@@ -15,13 +15,13 @@ class AlarmCreationViewController: UITableViewController, MPMediaPickerControlle
     /*
     IBOutlets
     */
-    @IBOutlet var titleLabel : UITextField
+    @IBOutlet var titleLabel : UITextField!
     
-    @IBOutlet var mapCell : UITableViewCell
-    @IBOutlet var mapCellLabel : UILabel
+    @IBOutlet var mapCell : UITableViewCell!
+    @IBOutlet var mapCellLabel : UILabel!
     
-    @IBOutlet var mediaCell : UITableViewCell
-    @IBOutlet var mediaImageView : UIImageView
+    @IBOutlet var mediaCell : UITableViewCell!
+    @IBOutlet var mediaImageView : UIImageView!
 
     /*
     Properties
@@ -31,11 +31,12 @@ class AlarmCreationViewController: UITableViewController, MPMediaPickerControlle
     var region:CLCircularRegion?
     
     
-    init(style: UITableViewStyle) {
+    override init(style: UITableViewStyle) {
         super.init(style: style)
         // Custom initialization
     }
-    init(coder aDecoder: NSCoder!) {
+    
+    required init(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
     }
 
@@ -47,7 +48,7 @@ class AlarmCreationViewController: UITableViewController, MPMediaPickerControlle
 
     @IBAction func cancel(sender : AnyObject) {
         
-        navigationController.presentingViewController.dismissViewControllerAnimated(true, completion: {});
+        navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: {})
         
     }
 
@@ -62,9 +63,9 @@ class AlarmCreationViewController: UITableViewController, MPMediaPickerControlle
         var alarm = Alarm(title: titleLabel.text, region: region!, media: mediaItem!)
 
         
-        navigationController.presentingViewController.dismissViewControllerAnimated(true, completion: {
+        navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: {
             
-            let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             
             appDelegate.addAlarm(alarm)
             

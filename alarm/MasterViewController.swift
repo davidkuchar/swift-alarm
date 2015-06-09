@@ -10,7 +10,7 @@ import UIKit
 
 class MasterViewController: UITableViewController {
 
-    var objects: Alarm[] = []
+    var objects: [Alarm] = []
 
 
     override func viewDidLoad() {
@@ -29,10 +29,10 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
 
         let object = objects[indexPath.row] as Alarm
-        cell.textLabel.text = object.title
+        cell.textLabel?.text = object.title
         return cell
     }
 

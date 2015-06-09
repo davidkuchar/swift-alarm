@@ -21,10 +21,10 @@ class MapViewController: UIViewController {
     
     var delegate : MapViewControllerDelegate? = nil
     
-    @IBOutlet var mapView : MKMapView
-    @IBOutlet var targetView : UIView
+    @IBOutlet var mapView : MKMapView!
+    @IBOutlet var targetView : UIView!
     
-    init(coder: NSCoder) {
+    required init(coder: NSCoder) {
         super.init(coder: coder)
     }
     
@@ -38,7 +38,7 @@ class MapViewController: UIViewController {
     @IBAction func save(sender : AnyObject) {
         
         //save
-        if ( delegate ) {
+        if (delegate != nil) {
             
             let center = mapView.centerCoordinate
             

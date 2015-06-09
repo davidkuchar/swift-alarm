@@ -15,7 +15,7 @@ class AlarmViewController: UIViewController {
     var alarm:Alarm!
     
     
-    init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
@@ -52,7 +52,7 @@ class AlarmViewController: UIViewController {
     @IBAction func shutup(sender : AnyObject) {
         
         musicPlayer.stop()
-        navigationController.presentingViewController.dismissModalViewControllerAnimated(true)
+        navigationController?.presentingViewController?.dismissViewControllerAnimated(true,completion: nil)
         
     }
 
