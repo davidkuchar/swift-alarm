@@ -97,7 +97,7 @@ class AlarmCreationViewController: UITableViewController, MPMediaPickerControlle
     override func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
 
         if ( segue!.identifier == "map" ) {
-            var mapVC = segue!.destinationViewController as MapViewController;
+            var mapVC = segue!.destinationViewController as! MapViewController;
             mapVC.delegate = self;
         }
     }
@@ -110,7 +110,7 @@ class AlarmCreationViewController: UITableViewController, MPMediaPickerControlle
         
         self.region = region
         mapCellLabel.text = "Region Selected"
-        self.navigationController.popViewControllerAnimated(true)
+        self.navigationController!.popViewControllerAnimated(true)
     }
 
     
@@ -119,8 +119,8 @@ class AlarmCreationViewController: UITableViewController, MPMediaPickerControlle
     */
     func mediaPicker(mediaPicker: MPMediaPickerController, didPickMediaItems  mediaItems:MPMediaItemCollection) -> Void
     {
-        var aMediaItem = mediaItems.items[0] as MPMediaItem
-        if ( aMediaItem.artwork ) {
+        var aMediaItem = mediaItems.items[0] as! MPMediaItem
+        if (( aMediaItem.artwork ) != nil) {
             mediaImageView.image = aMediaItem.artwork.imageWithSize(mediaCell.contentView.bounds.size);
             mediaImageView.hidden = false;
         }

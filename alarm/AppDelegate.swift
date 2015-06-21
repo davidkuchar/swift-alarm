@@ -17,19 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var alarms: Dictionary<String, Alarm> = Dictionary(minimumCapacity: 0)
     let locationManager: CLLocationManager = CLLocationManager()
     var masterViewController : MasterViewController!
-
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
-        
+    
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         locationManager.delegate = self;
         
         if ( ios8() ) {
             locationManager.requestAlwaysAuthorization()
-       
+            
         }
         
         //get the master view controller
-        let nav = application.windows[0].rootViewController as UINavigationController
-        masterViewController = nav.viewControllers[0] as MasterViewController
+//        if let nav = application.windows[0].rootViewController as UINavigationController? {
+//            masterViewController = nav.viewControllers[0] as? MasterViewController
+//        }
         
         return true
     }
@@ -72,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func launchAlarmViewController(alarm:Alarm!) {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let alarmVC = storyboard.instantiateViewControllerWithIdentifier("alarm") as AlarmViewController
+        let alarmVC = storyboard.instantiateViewControllerWithIdentifier("alarm") as! AlarmViewController
         alarmVC.alarm = alarm
         let nav = UINavigationController(rootViewController: alarmVC)
         masterViewController.presentViewController(nav, animated: true, completion: {})
@@ -81,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func alarmForRegionIdentifier(identifier:String!) -> Alarm? {
         
-        if let alarm = alarms[identifier] as? Alarm {
+        if let alarm = alarms[identifier] as Alarm? {
             return alarm
         } else {
             return nil
@@ -127,10 +127,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
     }
     
-    func locationManager(manager:CLLocationManager, monitoringDidFailForRegion region:CLRegion, withError error:NSErrorPointer) {
-        
-        println("Error monitoring regions " + error.memory.description);
+    func locationManager(manager: CLLocationManager!, monitoringDidFailForRegion region: CLRegion!, withError error: NSError!) {
+        println("Error monitoring regions " + error.description)
     }
-    
 }
 
